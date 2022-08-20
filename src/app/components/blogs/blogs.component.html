@@ -1,0 +1,52 @@
+<div class="header">
+    <div fxLayout="row" class="box1">
+        <mat-icon class="icon">dashboard</mat-icon> 
+        <h2 class="title">Blogs</h2>
+    </div>
+    <div class="headerDescription">
+        <div class="subtitle">
+            <p>Total users : 20</p>
+        </div>
+    </div>
+</div>
+
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let item of list" class="tile">
+        <div fxLayout="row" class="cardContent">
+            <div fxFlex="40">
+                <div>
+                    <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLR-vxrZqPTN4pRGtt_m61-8E5P830jOhCiBZh1cNCBVxrS-Hm-JMRk_9jj5P47tg8QE&usqp=CAU">
+                </div>
+            </div>
+            <div fxFlex="55" class="cardRight">
+                <h1 class="tileTitle">{{item.title}}</h1>
+                <p>
+                    {{item.body}}
+                </p>
+                <div fxLayout="row" fxLayoutAlign="start space-around" class="cardFooter">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div>
+                            <span class="material-icons cardIcon">
+                                query_builder
+                            </span>
+                        </div>
+                        <div>
+                            21 Aug 2022
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="secondCard">
+                        <div>
+                            <span class="material-icons cardIcon">
+                                person_outline
+                            </span>
+                        </div>
+                        <div>
+                            Alex Paul
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+  

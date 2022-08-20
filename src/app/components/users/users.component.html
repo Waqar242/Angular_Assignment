@@ -1,0 +1,103 @@
+<div class="header">
+    <div fxLayout="row" class="box1">
+        <div div fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="icon">dashboard</mat-icon> 
+            <h2 class="title">Users</h2>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" class="toggleDiv">
+            <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style" value="grid">
+                <mat-button-toggle (change)="onValChange($event.value)" value="list">
+                    <span class="material-icons">
+                        list
+                    </span>
+                </mat-button-toggle>
+                <mat-button-toggle (change)="onValChange($event.value)" value="grid">
+                    <span class="material-icons">
+                        view_module
+                    </span>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    <div class="headerDescription">
+        <div class="subtitle">
+            <p>Total users: 10</p>
+        </div>
+    </div>
+</div>
+<div class="body">
+    <mat-grid-list *ngIf="check" cols="6" rowHeight="1:1" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let item of usersList" class="tile">
+            <div fxLayout="column" fxLayoutAlign="space-around center" >
+                <div>
+                    <div>
+                        <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR6mNeolQnmtuuUJ3SwppHCm0CfRXTBECfOw&usqp=CAU">
+                        <div class="circleContainer">
+                            <span class="material-icons circleIcon">
+                                send
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="cardTitle">{{item.name}}</h1>
+                </div>
+                <div>
+                    <p>{{item.username}}</p>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list> 
+</div>
+<div *ngIf="!check" class="listBody">
+    <mat-form-field appearance="outline" class="search">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row"> 
+                <img class="circleContainer2" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR6mNeolQnmtuuUJ3SwppHCm0CfRXTBECfOw&usqp=CAU">
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td class="name" mat-cell *matCellDef="let row"> 
+                <h1>
+                    {{row.name}} 
+                </h1>
+            </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
+            <td mat-cell *matCellDef="let row"> {{row.username}}% </td>
+          </ng-container>
+      
+      
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Joining Date </th>
+            <td mat-cell *matCellDef="let row"> Date </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+        <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+        </mat-paginator>        
+      </div>
+</div>   
