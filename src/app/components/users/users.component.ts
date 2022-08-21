@@ -1,28 +1,18 @@
 import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface UserData {
-  id: string;
-  name: string;
-  username: string;
-  date: string;
-}
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.sass']
 })
-export class UsersComponent implements AfterViewInit {
-  usersList: any;
-  check: boolean = true;
-  displayedColumns: string[] = ['id', 'name', 'username', 'date'];
-
+export class UsersComponent implements OnInit {
+  usersList: any;  // to store users
+  check: boolean = true;  // for toggle between list and grid view
+  displayedColumns: string[] = ['id', 'name', 'username', 'date']; //columns for users table
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -33,6 +23,7 @@ export class UsersComponent implements AfterViewInit {
   constructor(private http: HttpClient) {
 
   }
+  
   ngOnInit(): void {
     this.getData().subscribe(next=>{
       this.usersList = next;
@@ -41,14 +32,12 @@ export class UsersComponent implements AfterViewInit {
     })
   }
 
+  // Function to retrieve data
   getData():Observable<any>{
     return this.http.get(`https://jsonplaceholder.typicode.com/users`);
   }
 
-  ngAfterViewInit() {
-
-  }
-
+  // Filter Function
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -57,6 +46,8 @@ export class UsersComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  // Toggle Function
   onValChange(value: string){
     if(value == 'list')
     {

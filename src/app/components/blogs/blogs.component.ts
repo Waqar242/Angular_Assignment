@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class BlogsComponent implements OnInit {
 
-  list: any;
+  // list to store blogs
+  list: any; 
+  // Using http client to get data 
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
     this.getData().subscribe(next=>{
@@ -19,6 +20,7 @@ export class BlogsComponent implements OnInit {
     })
   }
 
+  // Function to retrieve blogs
   getData():Observable<any>{
     return this.http.get(`https://jsonplaceholder.typicode.com/posts`);
   }
