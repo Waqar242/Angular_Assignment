@@ -1,7 +1,7 @@
 <! -- Main App component -->
 <app-header></app-header>
 <mat-drawer-container>
-  <mat-drawer mode="side" opened="true"> 
+  <mat-drawer mode="side" [opened]="visible"> 
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>

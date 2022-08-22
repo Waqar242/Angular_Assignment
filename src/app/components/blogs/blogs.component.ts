@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,6 +11,8 @@ export class BlogsComponent implements OnInit {
 
   // list to store blogs
   list: any; 
+  cols: number = 2;
+  seeMore: boolean = false;
   // Using http client to get data 
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
@@ -24,5 +26,14 @@ export class BlogsComponent implements OnInit {
   getData():Observable<any>{
     return this.http.get(`https://jsonplaceholder.typicode.com/posts`);
   }
+
+  @HostListener('window:resize', ['$event'])
+onResize(event:any) {
+  if(event.target.innerWidth < 800){
+    this.cols = 1;
+  }else{
+    this.cols = 2;
+  } 
+}
 
 }

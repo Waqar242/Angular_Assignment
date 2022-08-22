@@ -1,11 +1,11 @@
 <! -- Users component -->
 <div class="header">
-    <div fxLayout="row" class="box1">
+    <div fxLayout="row"  fxLayoutAlign="space-between center" class="box1">
         <div div fxLayout="row" fxLayoutAlign="start center">
             <mat-icon class="icon">dashboard</mat-icon> 
             <h2 class="title">Users</h2>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center" class="toggleDiv">
+        <div fxLayout="row" fxLayoutAlign="center center" class="toggleDiv">
             <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style" value="grid">
                 <mat-button-toggle (change)="onValChange($event.value)" value="list">
                     <span class="material-icons">
@@ -27,29 +27,27 @@
     </div>
 </div>
 <! -- Mat Grid List is used to display the users in Grid -->
-<div class="body">
-    <mat-grid-list *ngIf="check" cols="6" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let item of usersList" class="tile">
-            <div fxLayout="column" fxLayoutAlign="space-around center" >
+<div *ngIf="check" fxLayout="row wrap" fxLayoutGap="10px 10px" fxLayoutAlign="start start">
+    <mat-card *ngFor="let item of usersList" fxLayout="row" fxLayoutAlign="center center" class="margin-5">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <div>
                 <div>
-                    <div>
-                        <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR6mNeolQnmtuuUJ3SwppHCm0CfRXTBECfOw&usqp=CAU">
-                        <div class="circleContainer">
-                            <span class="material-icons circleIcon">
-                                send
-                            </span>
-                        </div>
+                    <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR6mNeolQnmtuuUJ3SwppHCm0CfRXTBECfOw&usqp=CAU">
+                    <div class="circleContainer">
+                        <span class="material-icons circleIcon">
+                            send
+                        </span>
                     </div>
                 </div>
-                <div>
-                    <h1 class="cardTitle">{{item.name}}</h1>
-                </div>
-                <div>
-                    <p>{{item.username}}</p>
-                </div>
             </div>
-        </mat-grid-tile>
-    </mat-grid-list> 
+            <div>
+                <h1 class="cardTitle">{{item.name}}</h1>
+            </div>
+            <div>
+                <p>{{item.username}}</p>
+            </div>
+        </div>
+    </mat-card>
 </div>
 <! -- Mat List is used to display the users in list -->
 <div *ngIf="!check" class="listBody">

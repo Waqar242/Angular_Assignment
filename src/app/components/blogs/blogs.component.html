@@ -11,44 +11,48 @@
     </div>
 </div>
 
-<! -- Mat Grid List is used to display the blogs -->
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let item of list" class="tile">
-        <div fxLayout="row" class="cardContent">
-            <div fxFlex="40">
-                <div>
-                    <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLR-vxrZqPTN4pRGtt_m61-8E5P830jOhCiBZh1cNCBVxrS-Hm-JMRk_9jj5P47tg8QE&usqp=CAU">
-                </div>
+<div fxLayout.lt-md="column" fxLayout="row wrap" fxLayoutGap="10px 10px" fxLayoutAlign="space-around start">
+    <mat-card fxFlex="48" style="margin:5px" *ngFor="let item of list" fxLayout="row" class="margin-5">
+        <div fxFlex="40">
+            <div>
+                <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLR-vxrZqPTN4pRGtt_m61-8E5P830jOhCiBZh1cNCBVxrS-Hm-JMRk_9jj5P47tg8QE&usqp=CAU">
             </div>
-            <div fxFlex="55" class="cardRight">
-                <h1 class="tileTitle">{{item.title}}</h1>
-                <p>
-                    {{item.body}}
-                </p>
-                <div fxLayout="row" fxLayoutAlign="start space-around" class="cardFooter">
-                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div>
-                            <span class="material-icons cardIcon">
-                                query_builder
-                            </span>
-                        </div>
-                        <div>
-                            21 Aug 2022
-                        </div>
+        </div>
+        <div fxFlex="55" class="cardRight">
+            <h2 class="tileTitle">{{item.title}}</h2>
+            <span>
+                {{
+                  seeMore
+                  ? item.body
+                  : item.body.slice(0, 50)
+                }}
+             </span>
+             <span *ngIf="item.body.length > 5"
+                   (click)="seeMore = !seeMore">
+                {{ !seeMore ? "See More" : "See Less" }}
+             </span>
+            <div fxLayout="row" fxLayoutAlign="start space-around" class="cardFooter">
+                <div fxLayout="row" fxLayoutAlign="space-around center">
+                    <div>
+                        <span class="material-icons cardIcon">
+                            query_builder
+                        </span>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-around center" class="secondCard">
-                        <div>
-                            <span class="material-icons cardIcon">
-                                person_outline
-                            </span>
-                        </div>
-                        <div>
-                            Alex Paul
-                        </div>
+                    <div>
+                        21 Aug 2022
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-around center" class="secondCard">
+                    <div>
+                        <span class="material-icons cardIcon">
+                            person_outline
+                        </span>
+                    </div>
+                    <div>
+                        Alex Paul
                     </div>
                 </div>
             </div>
         </div>
-    </mat-grid-tile>
-</mat-grid-list>
-  
+    </mat-card>
+</div>
