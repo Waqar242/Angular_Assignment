@@ -24,6 +24,10 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import { DashboardCardsComponent } from './components/dashboard-cards/dashboard-cards.component';
+import { RecentBlogsCardsComponent } from './components/recent-blogs-cards/recent-blogs-cards.component';
+import { BlogsCardsComponent } from './components/blogs-cards/blogs-cards.component';
+import { UsersCardsComponent } from './components/users-cards/users-cards.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import {MatCardModule} from '@angular/material/card';
     HomeComponent,
     UsersComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    DashboardCardsComponent,
+    RecentBlogsCardsComponent,
+    BlogsCardsComponent,
+    UsersCardsComponent
   ],
   imports: [
     BrowserModule,

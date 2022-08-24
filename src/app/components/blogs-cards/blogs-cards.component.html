@@ -1,0 +1,43 @@
+<div>
+    <div fxFlex="40">
+        <div>
+            <img class="image" alt="My image name" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLR-vxrZqPTN4pRGtt_m61-8E5P830jOhCiBZh1cNCBVxrS-Hm-JMRk_9jj5P47tg8QE&usqp=CAU">
+        </div>
+    </div>
+    <div fxFlex="55" class="cardRight">
+        <h2 class="tileTitle">{{card.title}}</h2>
+        <span>
+            {{
+              seeMore
+              ? card.body
+              : card.body.slice(0, 50)
+            }}
+         </span>
+         <span *ngIf="card.body.length > 5"
+               (click)="seeMore = !seeMore">
+            {{ !seeMore ? "See More" : "See Less" }}
+         </span>
+        <div fxLayout="row" fxLayoutAlign="start space-around" class="cardFooter">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div>
+                    <span class="material-icons cardIcon">
+                        query_builder
+                    </span>
+                </div>
+                <div>
+                    21 Aug 2022
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center" class="secondCard">
+                <div>
+                    <span class="material-icons cardIcon">
+                        person_outline
+                    </span>
+                </div>
+                <div>
+                    Alex Paul
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

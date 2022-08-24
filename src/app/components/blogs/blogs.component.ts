@@ -35,5 +35,4 @@ onResize(event:any) {
     this.cols = 2;
   } 
 }
-
 }

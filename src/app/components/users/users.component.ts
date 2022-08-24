@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-users',
@@ -27,9 +28,22 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.getData().subscribe(next=>{
       this.usersList = next;
-      this.dataSource = this.usersList;
+      this.dataSource = new MatTableDataSource(this.usersList);
       console.log(this.usersList)
     })
+  }
+
+  // FUnction for pagination
+  setPagination(value: number){
+    var updatedUserList: any = []; // to store updated list after pagination
+    value = value + 1;
+    updatedUserList.splice(0);
+    for(let i=0; i<value; i++)
+    {
+      updatedUserList.push(this.usersList[i]);
+    }
+    this.dataSource = new MatTableDataSource(updatedUserList);
+    console.log("Selected size: " + value);
   }
 
   // Function to retrieve data
@@ -41,10 +55,6 @@ export class UsersComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   // Toggle Function
